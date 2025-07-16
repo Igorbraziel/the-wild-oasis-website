@@ -1,29 +1,55 @@
 "use client";
 
+import { differenceInDays, format, isSameDay } from "date-fns";
 import { useReservation } from "./ReservationContext";
+import { createReservation } from "../_lib/actions";
+import { useFormStatus } from "react-dom";
 
-function ReservationForm({ cabin }) {
-  const { range } = useReservation();
-  const maxCapacity = { cabin };
+function ReservationForm({ cabin, user }) {
+  const { range, resetRange } = useReservation();
+  const { maxCapacity, regularPrice, discount, id } = cabin;
+
+  const startDate = range.from;
+  const endDate = range.to;
+
+  const numNights = differenceInDays(endDate, startDate);
+  const cabinPrice = numNights * (regularPrice - discount);
+
+  const bookingData = {
+    maxCapacity,
+    startDate,
+    endDate,
+    numNights,
+    cabinPrice,
+    cabinId: id,
+  };
+
+  const createReservationWithData = createReservation.bind(null, bookingData);
 
   return (
     <div className="scale-[1.01]">
       <div className="flex items-center justify-between bg-primary-800 px-16 py-2 text-primary-300">
         <p>Logged in as</p>
 
-        {/* <div className='flex gap-4 items-center'>
+        <div className="flex items-center gap-4">
           <img
             // Important to display google profile images
-            referrerPolicy='no-referrer'
-            className='h-8 rounded-full'
+            referrerPolicy="no-referrer"
+            className="h-8 rounded-full"
             src={user.image}
             alt={user.name}
           />
           <p>{user.name}</p>
-        </div> */}
+        </div>
       </div>
 
-      <form className="flex flex-col gap-5 bg-primary-900 px-16 py-10 text-lg">
+      <form
+        action={async (formData) => {
+          await createReservationWithData(formData);
+          resetRange();
+        }}
+        className="flex flex-col gap-5 bg-primary-900 px-16 py-10 text-lg"
+      >
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
           <select
@@ -58,16 +84,29 @@ function ReservationForm({ cabin }) {
         <div className="flex items-center justify-end gap-6">
           <p className="text-base text-primary-300">
             {range.from && range.to
-              ? `from ${range.from} to ${range.to}`
+              ? `from ${format(range.from, "MMMM, dd")} to ${format(range.to, "MMMM, dd")}`
               : "Start by selecting dates"}
           </p>
 
-          <button className="bg-accent-500 px-8 py-4 font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-            Reserve now
-          </button>
+          <CreateReservationButton
+            disabled={!startDate || !endDate || isSameDay(endDate, startDate)}
+          />
         </div>
       </form>
     </div>
+  );
+}
+
+function CreateReservationButton({ disabled }) {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      disabled={disabled || pending}
+      className="bg-accent-500 px-8 py-4 font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
+    >
+      {pending ? "Creating Reservation..." : "Reserve now"}
+    </button>
   );
 }
 
