@@ -24,11 +24,11 @@ export default async function Page({ params }) {
   const session = await auth();
 
   return (
-    <div className="mx-auto mt-8 max-w-6xl">
+    <div className="mx-auto sm:mt-6 mt-4 lg:mt-8 max-w-6xl">
       <CabinDetails cabin={cabin} />
 
       <div>
-        <h2 className="mb-8 text-center text-5xl font-semibold text-accent-400">
+        <h2 className="sm:mb-6 mb-4 lg:mb-8 text-center sm:text-3xl text-xl lg:text-5xl font-semibold text-accent-400">
           Reserve {cabin.name} today. Pay on arrival.
         </h2>
 

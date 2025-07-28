@@ -28,7 +28,7 @@ function DateSelector({ bookedDates, cabin, settings }) {
   return (
     <div className="flex flex-col justify-between">
       <DayPicker
-        className="place-self-center pt-12"
+        className="place-self-center lg:pt-12"
         mode="range"
         onSelect={setRange}
         selected={displayRange}

@@ -11,14 +11,14 @@ export const metadata = {
 export const revalidate = 0;
 
 export default function Page({ searchParams }) {
-  const filteredValue = searchParams?.capacity ?? "all"
+  const filteredValue = searchParams?.capacity ?? "all";
 
   return (
     <div>
-      <h1 className="mb-5 text-4xl font-medium text-accent-400">
+      <h1 className="mb-5 text-xl font-medium text-accent-400 sm:text-2xl lg:text-4xl">
         Our Luxury Cabins
       </h1>
-      <p className="mb-10 text-lg text-primary-200">
+      <p className="mb-10 text-sm text-primary-200 sm:text-base lg:text-lg">
         Cozy yet luxurious cabins, located right in the heart of the Italian
         Dolomites. Imagine waking up to beautiful mountain views, spending your
         days exploring the dark forests around, or just relaxing in your private
@@ -27,13 +27,12 @@ export default function Page({ searchParams }) {
         Welcome to paradise.
       </p>
 
-    <div className="flex justify-end mb-6">
-
-      <Filter />
-    </div>
+      <div className="mb-6 flex justify-end">
+        <Filter />
+      </div>
 
       <Suspense fallback={<Spinner />} key={filteredValue}>
-        <CabinList filteredValue={filteredValue}/>
+        <CabinList filteredValue={filteredValue} />
         <ReservationReminder />
       </Suspense>
     </div>

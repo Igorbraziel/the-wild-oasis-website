@@ -15,7 +15,7 @@ function Filter() {
   }
 
   return (
-    <div className="flex border border-primary-900">
+    <div className="flex border border-primary-900 text-sm sm:text-base lg:text-lg">
       <Button
         actived={activeFilter === "all"}
         onClick={() => handleFilter("all")}
