@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import { createGuest, getGuest } from "./data-service";
+import { SignJWT } from "jose";
 
 const authConfig = {
   providers: [
@@ -13,34 +14,52 @@ const authConfig = {
     authorized({ auth, request }) {
       return auth?.user ? true : false;
     },
-    async signIn({ user, account, profile }) {
-      try {
-        const data = await getGuest(user.email);
+    async jwt({ token, user }) {
+      if (user) {
+        try {
+          const data = await getGuest(user.email);
+          const currentGuest = data.guest;
 
-        const currentGuest = data.guest;
-
-        if (!currentGuest) {
-          await createGuest({
-            fullName: user.name,
-            email: user.email,
-          });
+          if (!currentGuest) {
+            const newGuest = await createGuest({
+              fullName: user.name,
+              email: user.email,
+            });
+            token.guestId = newGuest.id;
+          } else {
+            token.guestId = currentGuest.id;
+          }
+        } catch (error) {
+          // If DB operations fail, the token won't have the guestId
+          console.error("Error during sign-in DB operations:", error);
+          return null; // Returning null will cause a sign-in error
         }
-
-        return true;
-      } catch {
-        return false;
       }
+      return token;
     },
-    async session({ session, user }) {
-      const data = await getGuest(session.user.email);
-      const guest = data.guest
-      session.user.guestId = guest.id
+    async session({ session, token }) {
+      const secret = new TextEncoder().encode(process.env.NEXTAUTH_SECRET);
+
+      if (session?.user) {
+        session.user.guestId = token.guestId;
+      }
+
+      const jwtString = await new SignJWT(token)
+        .setProtectedHeader({ alg: "HS256" })
+        .setIssuedAt()
+        .setExpirationTime("2h")
+        .sign(secret);
+      session.accessToken = jwtString;
       return session;
     },
   },
   pages: {
     signIn: "/login",
     signOut: "/logout",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
   },
 };
 

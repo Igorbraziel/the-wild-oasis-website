@@ -1,5 +1,6 @@
 import { eachDayOfInterval } from "date-fns";
 import { notFound } from "next/navigation";
+import { auth } from "./auth";
 
 /////////////
 // GET
@@ -34,8 +35,8 @@ export async function getBookedDatesByCabinId(cabinId) {
       },
     );
 
-    if(response.status === 404){
-      return []
+    if (response.status === 404) {
+      return [];
     }
 
     if (!response.ok) {
@@ -163,10 +164,14 @@ export async function getBooking(id) {
 
 export async function getBookings(guestId) {
   try {
+    const session = await auth();
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/bookings/guest/${guestId}`,
       {
         method: "GET",
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`,
+        },
       },
     );
 
@@ -186,10 +191,14 @@ export async function getBookings(guestId) {
 
 export async function getSettings() {
   try {
+    const session = await auth();
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/settings`,
       {
         method: "GET",
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`,
+        },
       },
     );
 
@@ -247,12 +256,14 @@ export async function createGuest(newGuest) {
 
 export async function createBooking(newBooking) {
   try {
+    const session = await auth();
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/bookings/create`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessToken}`,
         },
         body: JSON.stringify(newBooking),
       },
@@ -272,12 +283,14 @@ export async function createBooking(newBooking) {
 
 export async function createCabin(newCabin) {
   try {
+    const session = await auth();
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/cabins/create`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessToken}`,
         },
         body: JSON.stringify(newCabin),
       },
@@ -301,12 +314,14 @@ export async function createCabin(newCabin) {
 // The updatedFields is an object which should ONLY contain the updated data
 export async function updateGuest(id, updatedFields) {
   try {
+    const session = await auth();
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/guests/update/${id}`,
       {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessToken}`,
         },
         body: JSON.stringify(updatedFields),
       },
@@ -326,12 +341,14 @@ export async function updateGuest(id, updatedFields) {
 
 export async function updateBooking(id, updatedFields) {
   try {
+    const session = await auth();
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/bookings/update/${id}`,
       {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.accessToken}`,
         },
         body: JSON.stringify(updatedFields),
       },
@@ -354,10 +371,14 @@ export async function updateBooking(id, updatedFields) {
 
 export async function deleteBooking(id) {
   try {
+    const session = await auth();
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/bookings/delete/${id}`,
       {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`,
+        },
       },
     );
 
@@ -372,10 +393,14 @@ export async function deleteBooking(id) {
 
 export async function deleteAllBookings() {
   try {
+    const session = await auth();
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/bookings/delete/all`,
       {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`,
+        },
       },
     );
 
@@ -390,10 +415,14 @@ export async function deleteAllBookings() {
 
 export async function deleteAllGuests() {
   try {
+    const session = await auth();
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/guests/delete/all`,
       {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`,
+        },
       },
     );
 
@@ -408,10 +437,14 @@ export async function deleteAllGuests() {
 
 export async function deleteAllCabins() {
   try {
+    const session = await auth();
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/cabins/delete/all`,
       {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`,
+        },
       },
     );
 
