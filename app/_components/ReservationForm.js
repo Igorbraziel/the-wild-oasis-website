@@ -28,7 +28,7 @@ function ReservationForm({ cabin, user }) {
 
   return (
     <div className="scale-[1.01]">
-      <div className="flex items-center justify-between bg-primary-800 px-16 py-2 text-primary-300">
+      <div className="flex items-center justify-between bg-primary-800 px-7 py-2 text-xs text-primary-300 sm:px-10 sm:text-base lg:px-16 lg:text-lg">
         <p>Logged in as</p>
 
         <div className="flex items-center gap-4">
@@ -48,14 +48,19 @@ function ReservationForm({ cabin, user }) {
           await createReservationWithData(formData);
           resetRange();
         }}
-        className="flex flex-col gap-5 bg-primary-900 px-16 py-10 text-lg"
+        className="flex flex-col gap-3 bg-primary-900 px-9 py-6 text-lg sm:px-12 sm:py-8 lg:gap-5 lg:px-16 lg:py-10"
       >
         <div className="space-y-2">
-          <label htmlFor="numGuests">How many guests?</label>
+          <label
+            className="text-base sm:text-lg lg:text-xl"
+            htmlFor="numGuests"
+          >
+            How many guests?
+          </label>
           <select
             name="numGuests"
             id="numGuests"
-            className="w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm"
+            className="w-full rounded-sm bg-primary-200 px-5 py-3 text-lg text-primary-800 shadow-sm sm:text-xl lg:text-2xl"
             required
           >
             <option value="" key="">
@@ -70,19 +75,22 @@ function ReservationForm({ cabin, user }) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="observations">
+          <label
+            className="text-base sm:text-lg lg:text-xl"
+            htmlFor="observations"
+          >
             Anything we should know about your stay?
           </label>
           <textarea
             name="observations"
             id="observations"
-            className="w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm"
+            className="w-full rounded-sm bg-primary-200 px-5 py-3 text-sm text-primary-800 shadow-sm sm:text-lg lg:text-2xl"
             placeholder="Any pets, allergies, special requirements, etc.?"
           />
         </div>
 
         <div className="flex items-center justify-end gap-6">
-          <p className="text-base text-primary-300">
+          <p className="text-sm text-primary-300 lg:text-base">
             {range.from && range.to
               ? `from ${format(range.from, "MMMM, dd")} to ${format(range.to, "MMMM, dd")}`
               : "Start by selecting dates"}
@@ -103,7 +111,7 @@ function CreateReservationButton({ disabled }) {
   return (
     <button
       disabled={disabled || pending}
-      className="bg-accent-500 px-8 py-4 font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
+      className="bg-accent-500 px-4 py-2 text-base font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300 sm:px-6 sm:py-3 sm:text-lg lg:px-8 lg:py-4 lg:text-xl"
     >
       {pending ? "Creating Reservation..." : "Reserve now"}
     </button>

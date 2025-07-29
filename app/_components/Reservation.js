@@ -8,7 +8,7 @@ async function Reservation({ cabin, user }) {
   const settings = await getSettings();
 
   return (
-    <div className={`flex flex-col gap-6 md:grid md:min-h-[400px] md:grid-cols-2 border border-primary-800`}>
+    <div className={`flex flex-col sm:gap-5 gap-3 lg:gap-6 md:grid md:min-h-[400px] md:grid-cols-2 border border-primary-800`}>
       <DateSelector
         bookedDates={bookedDates}
         settings={settings}

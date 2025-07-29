@@ -13,17 +13,23 @@ const navLinks = [
   {
     name: "Home",
     href: "/account",
-    icon: <HomeIcon className="h-5 w-5 text-primary-600" />,
+    icon: (
+      <HomeIcon className="h-3 w-3 text-primary-600 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+    ),
   },
   {
     name: "Reservations",
     href: "/account/reservations",
-    icon: <CalendarDaysIcon className="h-5 w-5 text-primary-600" />,
+    icon: (
+      <CalendarDaysIcon className="h-3 w-3 text-primary-600 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+    ),
   },
   {
     name: "Guest profile",
     href: "/account/profile",
-    icon: <UserIcon className="h-5 w-5 text-primary-600" />,
+    icon: (
+      <UserIcon className="h-3 w-3 text-primary-600 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+    ),
   },
 ];
 
@@ -31,12 +37,12 @@ function SideNavigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="border-r border-primary-900">
-      <ul className="flex h-full flex-col gap-2 text-lg">
+    <nav className="pb-4 sm:py-0 border-b-4 border-primary-900 sm:border-b-0 sm:border-r">
+      <ul className="flex flex-col gap-2 text-sm sm:h-full sm:text-base lg:text-lg">
         {navLinks.map((link) => (
           <li key={link.name}>
             <Link
-              className={`flex items-center gap-4 px-5 py-3 font-semibold text-primary-200 transition-colors hover:bg-primary-900 hover:text-primary-100 ${pathname === link.href ? "bg-primary-900" : ""}`}
+              className={`flex items-center gap-3 px-3 py-1 font-semibold text-primary-200 transition-colors hover:bg-primary-900 hover:text-primary-100 sm:gap-4 sm:px-4 sm:py-2 lg:gap-4 lg:px-5 lg:py-3 ${pathname === link.href ? "bg-primary-900" : ""}`}
               href={link.href}
             >
               {link.icon}

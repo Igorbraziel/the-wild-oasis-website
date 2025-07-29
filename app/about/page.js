@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import about1 from "@/public/about-1.jpg";
 import { getCabins } from "../_lib/data-service";
+import Link from "next/link";
 
 export const revalidate = 86400;
 
@@ -9,9 +10,9 @@ export default async function Page() {
   const cabins = await getCabins();
 
   return (
-    <div className="grid grid-cols-5 items-center gap-x-24 gap-y-32 text-lg">
+    <div className="flex flex-col gap-10 text-xs sm:grid sm:grid-cols-5 sm:items-center sm:gap-x-24 sm:gap-y-32 sm:text-sm lg:text-lg">
       <div className="col-span-3">
-        <h1 className="mb-10 text-4xl font-medium text-accent-400">
+        <h1 className="mb-4 text-xl font-medium text-accent-400 sm:mb-7 sm:text-2xl lg:mb-10 lg:text-4xl">
           Welcome to The Wild Oasis
         </h1>
 
@@ -24,10 +25,11 @@ export default async function Page() {
             and enjoying simple pleasures with family.
           </p>
           <p>
-            Our {cabins?.length || 0} luxury cabins provide a cozy base, but the real freedom and
-            peace you&apos;ll find in the surrounding mountains. Wander through
-            lush forests, breathe in the fresh air, and watch the stars twinkle
-            above from the warmth of a campfire or your hot tub.
+            Our {cabins?.length || 0} luxury cabins provide a cozy base, but the
+            real freedom and peace you&apos;ll find in the surrounding
+            mountains. Wander through lush forests, breathe in the fresh air,
+            and watch the stars twinkle above from the warmth of a campfire or
+            your hot tub.
           </p>
           <p>
             This is where memorable moments are made, surrounded by
@@ -37,7 +39,7 @@ export default async function Page() {
         </div>
       </div>
 
-      <div className="col-span-2">
+      <div className="sm:col-span-2">
         <Image
           src={about1}
           alt="Family sitting around a fire pit in front of cabin"
@@ -46,7 +48,7 @@ export default async function Page() {
         />
       </div>
 
-      <div className="relative col-span-2 aspect-square">
+      <div className="relative aspect-square sm:col-span-2">
         <Image
           src="/about-2.jpg"
           fill
@@ -55,8 +57,8 @@ export default async function Page() {
         />
       </div>
 
-      <div className="col-span-3">
-        <h1 className="mb-10 text-4xl font-medium text-accent-400">
+      <div className="sm:col-span-3">
+        <h1 className="mb-4 text-xl font-medium text-accent-400 sm:mb-7 sm:text-2xl lg:mb-10 lg:text-4xl">
           Managed by our family since 1962
         </h1>
 
@@ -76,13 +78,13 @@ export default async function Page() {
             is like coming home.
           </p>
 
-          <div>
-            <a
+          <div className="text-center">
+            <Link
               href="/cabins"
-              className="mt-4 inline-block bg-accent-500 px-8 py-5 text-lg font-semibold text-primary-800 transition-all hover:bg-accent-600"
+              className="mt-1 inline-block bg-accent-500 px-4 py-2 text-base lg:text-lg font-semibold text-primary-800 transition-all hover:bg-accent-600 sm:mt-2 sm:px-6 sm:py-4 lg:mt-4 lg:px-8 lg:py-5"
             >
               Explore our luxury cabins
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -43,8 +43,8 @@ function ReservationCard({ booking, onDelete }) {
   const { name, image } = cabin;
 
   return (
-    <div className="flex border border-primary-800">
-      <div className="relative aspect-square h-32">
+    <div className="flex flex-col border border-primary-800 lg:flex-row">
+      <div className="relative aspect-square h-24 sm:h-32 md:48 lg:h-32">
         <Image
           src={`/cabins/${image}`}
           alt={`Cabin ${name}`}
@@ -53,23 +53,23 @@ function ReservationCard({ booking, onDelete }) {
         />
       </div>
 
-      <div className="flex flex-grow flex-col px-6 py-3">
+      <div className="flex flex-grow flex-col space-y-2 px-4 py-3 sm:px-5 lg:px-6">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">
+          <h3 className="text-base font-semibold sm:text-lg lg:text-xl">
             {numNights} nights in Cabin {name}
           </h3>
           {isPast(new Date(startDate)) ? (
-            <span className="flex h-7 items-center rounded-sm bg-yellow-800 px-3 text-xs font-bold uppercase text-yellow-200">
+            <span className="flex h-5 items-center rounded-sm bg-yellow-800 text-xs font-bold uppercase text-yellow-200 sm:h-6 sm:px-3 lg:h-7">
               past
             </span>
           ) : (
-            <span className="flex h-7 items-center rounded-sm bg-green-800 px-3 text-xs font-bold uppercase text-green-200">
+            <span className="flex h-5 items-center rounded-sm bg-green-800 px-2 text-xs font-bold uppercase text-green-200 sm:h-6 sm:px-3 lg:h-7">
               upcoming
             </span>
           )}
         </div>
 
-        <p className="text-lg text-primary-300">
+        <p className="text-xs text-primary-300 sm:text-base lg:text-lg">
           {format(new Date(startDate), "EEE, MMM dd yyyy")} (
           {isToday(new Date(startDate))
             ? "Today"
@@ -77,13 +77,15 @@ function ReservationCard({ booking, onDelete }) {
           ) &mdash; {format(new Date(endDate), "EEEE, MMM dd yyyy")}
         </p>
 
-        <div className="mt-auto flex items-baseline gap-5">
-          <p className="text-xl font-semibold text-accent-400">${totalPrice}</p>
+        <div className="mt-auto flex items-baseline gap-3 sm:gap-4 lg:gap-5">
+          <p className="text-sm font-semibold text-accent-400 sm:text-lg lg:text-xl">
+            ${totalPrice}
+          </p>
           <p className="text-primary-300">&bull;</p>
-          <p className="text-lg text-primary-300">
+          <p className="text-xs text-primary-300 sm:text-base lg:text-lg">
             {numGuests} guest{numGuests > 1 && "s"}
           </p>
-          <p className="ml-auto text-sm text-primary-400">
+          <p className="ml-auto text-xs text-primary-400 sm:text-sm">
             Booked {format(new Date(createdAt), "EEE, MMM dd yyyy, p")}
           </p>
         </div>
@@ -96,7 +98,7 @@ function ReservationCard({ booking, onDelete }) {
               href={`/account/reservations/edit/${id}`}
               className="group flex flex-grow items-center gap-2 border-b border-primary-800 px-3 text-xs font-bold uppercase text-primary-300 transition-colors hover:bg-accent-600 hover:text-primary-900"
             >
-              <PencilSquareIcon className="h-5 w-5 text-primary-600 transition-colors group-hover:text-primary-800" />
+              <PencilSquareIcon className="h-3 w-3 text-primary-600 transition-colors group-hover:text-primary-800 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
               <span className="mt-1">Edit</span>
             </Link>
             <DeleteReservation bookingId={id} onDelete={onDelete} />

@@ -15,7 +15,7 @@ export default async function Page({ params }) {
 
   return (
     <div>
-      <h2 className="mb-7 text-2xl font-semibold text-accent-400">
+      <h2 className="sm:mb-6 mb-4 lg:mb-7 sm:text-xl text-lg lg:text-2xl font-semibold text-accent-400">
         Edit Reservation #{params.bookingId}
       </h2>
 

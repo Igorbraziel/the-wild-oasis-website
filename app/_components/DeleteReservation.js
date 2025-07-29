@@ -23,7 +23,7 @@ function DeleteReservation({ bookingId, onDelete }) {
         <SpinnerMini />
       ) : (
         <>
-          <TrashIcon className="h-5 w-5 text-primary-600 transition-colors group-hover:text-primary-800" />
+          <TrashIcon className="h-3 w-3 text-primary-600 transition-colors group-hover:text-primary-800 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
           <span className="mt-1">Delete</span>
         </>
       )}

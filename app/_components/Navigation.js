@@ -30,6 +30,7 @@ export default async function Navigation() {
               className="flex items-center justify-center gap-3 text-sm transition-colors hover:text-accent-400 sm:text-lg lg:text-xl"
             >
               <img
+                referrerPolicy="no-referrer"
                 className="max-h-8 rounded-full"
                 src={session.user.image.toString()}
                 alt={session.user.name.toString()}

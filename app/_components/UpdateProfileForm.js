@@ -9,7 +9,7 @@ function UpdateProfileForm({ children, guest }) {
   return (
     <form
       action={updateGuest}
-      className="flex flex-col gap-6 bg-primary-900 px-12 py-8 text-lg"
+      className="flex flex-col gap-6 bg-primary-900 px-8 py-4 text-sm sm:px-10 sm:py-6 sm:text-base lg:px-12 lg:py-8 lg:text-lg"
     >
       <div className="space-y-2">
         <label>Full name</label>
@@ -17,7 +17,7 @@ function UpdateProfileForm({ children, guest }) {
           disabled
           name="fullName"
           defaultValue={fullName}
-          className="w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+          className="w-full rounded-sm bg-primary-200 px-3 py-2 text-primary-800 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400 sm:px-4 lg:px-5 lg:py-3"
         />
       </div>
 
@@ -27,7 +27,7 @@ function UpdateProfileForm({ children, guest }) {
           disabled
           name="email"
           defaultValue={email}
-          className="w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+          className="w-full rounded-sm bg-primary-200 px-3 py-2 text-primary-800 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400 sm:px-4 lg:px-5 lg:py-3"
         />
       </div>
 
@@ -52,7 +52,7 @@ function UpdateProfileForm({ children, guest }) {
         <input
           name="nationalID"
           defaultValue={nationalID}
-          className="w-full rounded-sm bg-primary-200 px-5 py-3 text-primary-800 shadow-sm"
+          className="w-full rounded-sm bg-primary-200 px-3 py-2 text-primary-800 shadow-sm sm:px-4 lg:px-5 lg:py-3"
         />
       </div>
 
@@ -69,7 +69,7 @@ function FormButton() {
   return (
     <button
       disabled={pending}
-      className="bg-accent-500 px-8 py-4 font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
+      className="bg-accent-500 px-4 py-2 font-semibold text-primary-800 transition-all hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300 sm:px-6 sm:py-3 lg:px-8 lg:py-4"
     >
       {pending ? "Updating..." : "UpdateProfile"}
     </button>
