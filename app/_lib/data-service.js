@@ -8,7 +8,7 @@ import { auth } from "./auth";
 export async function getCabin(id) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/cabins/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/cabins/${id}`,
       {
         method: "GET",
       },
@@ -29,7 +29,7 @@ export async function getCabin(id) {
 export async function getBookedDatesByCabinId(cabinId) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/bookings/cabin/${cabinId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/bookings/cabin/${cabinId}`,
       {
         method: "GET",
       },
@@ -66,7 +66,7 @@ export async function getBookedDatesByCabinId(cabinId) {
 export async function getCabinPrice(id) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/cabins/price/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/cabins/price/${id}`,
       {
         method: "GET",
       },
@@ -86,7 +86,7 @@ export async function getCabinPrice(id) {
 
 export const getCabins = async function () {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cabins`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cabins`, {
       method: "GET",
     });
 
@@ -105,7 +105,7 @@ export const getCabins = async function () {
 export async function getGuest(email) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/guests/${email}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/guests/${email}`,
       {
         method: "GET",
       },
@@ -125,7 +125,7 @@ export async function getGuest(email) {
 
 export async function getAllGuests() {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/guests`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/guests`, {
       method: "GET",
     });
 
@@ -144,7 +144,7 @@ export async function getAllGuests() {
 export async function getBooking(id) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/bookings/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/bookings/${id}`,
       {
         method: "GET",
       },
@@ -166,7 +166,7 @@ export async function getBookings(guestId) {
   try {
     const session = await auth();
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/bookings/guest/${guestId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/bookings/guest/${guestId}`,
       {
         method: "GET",
         headers: {
@@ -193,7 +193,7 @@ export async function getSettings() {
   try {
     const session = await auth();
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/settings`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/settings`,
       {
         method: "GET",
         headers: {
@@ -232,7 +232,7 @@ export async function getCountries() {
 export async function createGuest(newGuest) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/guests/create`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/guests/create`,
       {
         method: "POST",
         headers: {
@@ -258,7 +258,7 @@ export async function createBooking(newBooking) {
   try {
     const session = await auth();
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/bookings/create`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/bookings/create`,
       {
         method: "POST",
         headers: {
@@ -285,7 +285,7 @@ export async function createCabin(newCabin) {
   try {
     const session = await auth();
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/cabins/create`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/cabins/create`,
       {
         method: "POST",
         headers: {
@@ -316,7 +316,7 @@ export async function updateGuest(id, updatedFields) {
   try {
     const session = await auth();
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/guests/update/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/guests/update/${id}`,
       {
         method: "PATCH",
         headers: {
@@ -343,7 +343,7 @@ export async function updateBooking(id, updatedFields) {
   try {
     const session = await auth();
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/bookings/update/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/bookings/update/${id}`,
       {
         method: "PATCH",
         headers: {
@@ -373,7 +373,7 @@ export async function deleteBooking(id) {
   try {
     const session = await auth();
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/bookings/delete/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/bookings/delete/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -395,7 +395,7 @@ export async function deleteAllBookings() {
   try {
     const session = await auth();
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/bookings/delete/all`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/bookings/delete/all`,
       {
         method: "DELETE",
         headers: {
@@ -417,7 +417,7 @@ export async function deleteAllGuests() {
   try {
     const session = await auth();
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/guests/delete/all`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/guests/delete/all`,
       {
         method: "DELETE",
         headers: {
@@ -439,7 +439,7 @@ export async function deleteAllCabins() {
   try {
     const session = await auth();
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/cabins/delete/all`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/cabins/delete/all`,
       {
         method: "DELETE",
         headers: {
