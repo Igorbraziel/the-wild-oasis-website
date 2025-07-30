@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏝️ The Wild Oasis – Hotel Booking Website
 
-## Getting Started
+Welcome to **The Wild Oasis**, a modern and responsive hotel booking website for a fictional luxury resort. This full stack application demonstrates a wide variety of technologies and practices used in modern web development, from **Next.js App Router** to **JWT-secured Express APIs**, **Tailwind CSS** styling, **NextAuth.js** authentication, and more.
 
-First, run the development server:
+🌐 **Live Website**: [https://the-wild-oasis-website-hvul.vercel.app/](https://the-wild-oasis-website-hvul.vercel.app/)
+🚀 **Backend Deployed on Render**: [render.com](https://render.com)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌟 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🧭 Built with **Next.js App Router** for cutting-edge routing and rendering techniques
+- 💅 Styled with **Tailwind CSS** for a clean, modern, and fully responsive UI
+- 🧩 Combination of **Server Components**, **Client Components**, and **Server Actions**
+- 🔐 **JWT-based authentication and authorization**
+- 🔁 Seamless **API integration** with an **Express.js backend**
+- 🌍 **Third-party login via Google** using **NextAuth.js**
+- 🛏️ Real-time reservation system for booking luxury cabins
+- ✅ Protected routes for authenticated users
+- 🖥️ Optimized for performance and accessibility
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🧠 What I Learned
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project helped me solidify several key concepts in full stack web development:
 
-## Learn More
+- Advanced usage of **Next.js App Router**, including layout nesting and SSR
+- Integrating **Next.js** frontend with a separate **Express.js** backend
+- Securely managing authentication with **NextAuth.js** and JWTs
+- Creating scalable and modular REST APIs
+- Handling protected routes and secure data fetching
+- Building dynamic and responsive UIs with **Tailwind CSS**
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Frontend
+- [Next.js (App Router)](https://nextjs.org/docs/app)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [React Icons](https://react-icons.github.io/react-icons/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Backend
+- [Express.js](https://expressjs.com/)
+- [JWT (jsonwebtoken)](https://www.npmjs.com/package/jsonwebtoken)
+- [PostgreSQL]
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Dev Tools
+- Vercel (Frontend Deployment)
+- Render (Backend Deployment)
+- Postman for API testing
